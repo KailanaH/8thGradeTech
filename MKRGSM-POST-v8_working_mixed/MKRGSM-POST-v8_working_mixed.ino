@@ -91,7 +91,7 @@ void loop ()
     if (client.connect(server, port)) {
 
       float voltage = analogRead (ADC_BATTERY) * (4.3/1023.0) ;
-      postToWia("{\"latitude\":" + String(gps.location.lat()) + ", \"longitude\":" + String(gps.location.lng(),6) + ", \"deviceID\":\"doggie\", \"accuracy\": 21,\"battery\":" + String(voltage) + "}");
+      postLocation("{\"latitude\":" + String(gps.location.lat()) + ", \"longitude\":" + String(gps.location.lng(),6) + ", \"deviceID\":\"doggie\", \"accuracy\": 21,\"battery\":" + String(voltage) + "}");
 
       statusCode = httpClient.responseStatusCode();
       response = httpClient.responseBody();
@@ -119,8 +119,7 @@ void loop ()
 
 }
 
-
-void postToWia(String data) {
+void postLocation(String data) {
 
   Serial.println(server);
   Serial.println(port);
